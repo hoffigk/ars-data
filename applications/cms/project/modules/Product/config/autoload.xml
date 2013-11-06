@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ae:configurations 
+    xmlns="http://agavi.org/agavi/config/parts/autoload/1.0" 
+    xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.0">
+    <ae:configuration>
+
+        <!-- Agavi -->
+        <autoload name="ProductBaseAction">%core.module_dir%/Product/lib/agavi/action/ProductBaseAction.class.php</autoload>
+        <autoload name="ProductBaseView">%core.module_dir%/Product/lib/agavi/view/ProductBaseView.class.php</autoload>
+        <autoload name="ProductDocumentValidator">%core.module_dir%/Product/lib/agavi/validator/ProductDocumentValidator.class.php</autoload>
+        
+        <!-- Service -->
+        <autoload name="ProductService">%core.module_dir%/Product/lib/ProductService.class.php</autoload>
+    </ae:configuration>
+</ae:configurations>

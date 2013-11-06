@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ae:configurations 
+    xmlns="http://berlinonline.de/schemas/honeybee/workflow/1.0" 
+    xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.0">
+    <ae:configuration>
+        <workflow name="product.default">
+            <description>
+                This workflow defines the process flow for editing/publishing Product data.
+                The looks something like this: Edit -> Publish -> ...
+            </description>
+            <start_at>edit</start_at>
+            <steps>
+                <step name="edit">
+                    <description>Manually edit a product document.</description>
+                    <plugin type="Honeybee\Core\Workflow\Plugin\InteractivePlugin">
+                        <ae:parameters>
+                            <ae:parameter name="module">Product</ae:parameter>
+                            <ae:parameter name="action">Edit</ae:parameter>
+                        </ae:parameters>
+                        <gates>
+                            <gate_step label="approve product" name="promote">publish</gate_step>
+                            <gate_step label="delete product" name="delete">delete</gate_step>
+                        </gates>
+                    </plugin>
+                </step>
+
+                <step name="publish">
+                    <description>Tries to publish a given product document.</description>
+                    <plugin type="Honeybee\Core\Workflow\Plugin\PublishPlugin">
+                        <!-- Register your exports (publishing) here
+                        <ae:parameters>
+                            <ae:parameter name="exports">
+                                <ae:parameters>
+                                    <ae:parameter>pulq-fe</ae:parameter>
+                                </ae:parameters>
+                            </ae:parameter>
+                        </ae:parameters> 
+                        -->
+                        <gates>
+                            <gate_step label="publishing ok" name="promote">published</gate_step>
+                            <gate_step label="publishing error" name="demote">edit</gate_step>
+                        </gates>
+                    </plugin>
+                </step>
+
+                <step name="published">
+                    <description>Interactive editing/corrections within a published state.</description>
+                    <plugin type="Honeybee\Core\Workflow\Plugin\InteractivePlugin">
+                        <ae:parameters>
+                            <ae:parameter name="module">Product</ae:parameter>
+                            <ae:parameter name="action">Edit</ae:parameter>
+                            <!-- Register your exports (revoking) here
+                            <ae:parameter name="exports">
+                                <ae:parameters>
+                                    <ae:parameter>pulq-fe</ae:parameter>
+                                </ae:parameters>
+                            </ae:parameter> 
+                            -->
+                        </ae:parameters>
+                        <gates>
+                            <gate_step label="depublish product" name="demote">edit</gate_step>
+                            <gate_step label="delete product" name="delete">delete</gate_step>
+                        </gates>
+                    </plugin>
+                </step>
+
+                <step name="delete">
+                    <description>
+                        Marks a given Product as deleted.
+                        During a configurable time period the item(place) can then be recovered,
+                        before being removed by the system's maintenance.
+                    </description>
+                    <plugin type="Honeybee\Core\Workflow\Plugin\DeletePlugin">
+                        <gates>
+                            <gate_end name="suspend" />
+                        </gates>
+                    </plugin>
+                </step>
+            </steps>
+        </workflow>
+    </ae:configuration>
+</ae:configurations>

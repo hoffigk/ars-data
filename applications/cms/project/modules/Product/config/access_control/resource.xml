@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ae:configurations
+    xmlns="http://berlinonline.de/schemas/honeybee/config/access_control/1.0" 
+    xmlns:env="http://berlinonline.de/schemas/honeybee/config/envelope/definition/1.0" 
+    xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.0">
+    <ae:configuration>
+        <!-- 
+            Defines all actions that shall be available upon the product resource.
+
+            :INFO:
+            In opposite to the permissions file, which will probally vanish,
+            this file will serve as a source to the later rights gui,
+            allowing to show the available actions per resource/module.
+        -->
+        <resources>
+            <resource name="product">
+                <description>Defines a resource that represents product documents.</description>
+                <actions>
+                    <action>product::read</action>
+                    <action>product::write</action>
+                    <action>product::create</action>
+
+                    <action>product.edit::read</action>
+                    <action>product.edit::write</action>
+                    <action>product.edit::promote</action>
+                    <action>product.edit::delete</action>
+
+                    <action>product.publish::write</action>
+                    <action>product.publish::promote</action>
+                    <action>product.publish::demote</action>
+
+                    <action>product.published::read</action>
+                    <action>product.published::write</action>
+                    <action>product.published::promote</action>
+                    <action>product.published::demote</action>
+                    <action>product.published::delete</action>
+
+                    <action>product.archive::write</action>
+                    <action>product.archive::promote</action>
+                    <action>product.archive::demote</action>
+
+                    <action>product.archived::read</action>
+                    <action>product.archived::write</action>
+                    <action>product.archived::promote</action>
+                    <action>product.archived::demote</action>
+                    <action>product.archived::delete</action>
+
+                    <action>product.delete::write</action>
+                </actions>
+            </resource>
+        </resources>
+    </ae:configuration>
+</ae:configurations>
