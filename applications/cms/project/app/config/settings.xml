@@ -6,8 +6,8 @@
             <setting name="app_name">ars-data</setting>
             <setting name="project_prefix">ars-data</setting>
             <setting name="project_contact">
-                <ae:parameter name="name">Thorsten Schmitt-Rink</ae:parameter>
-                <ae:parameter name="email">thorsten.schmitt-rink@berlinonline.de</ae:parameter>
+                <ae:parameter name="name">Frank</ae:parameter>
+                <ae:parameter name="email">hoffigk@gmail.com</ae:parameter>
             </setting>
             <setting name="available">true</setting>
             <setting name="debug">false</setting>
@@ -16,9 +16,9 @@
 
         <settings prefix="password_constraints.">
             <setting name="min_decimal_numbers">0</setting>
-            <setting name="min_uppercase_chars">2</setting>
+            <setting name="min_uppercase_chars">0</setting>
             <setting name="min_lowercase_chars">2</setting>
-            <setting name="min_string_length">8</setting>
+            <setting name="min_string_length">2</setting>
             <setting name="max_string_length">32</setting>
         </settings>
 
